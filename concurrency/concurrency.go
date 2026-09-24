@@ -11,9 +11,9 @@ func CheckWebsites(wc WebsiteChecker, urls []string) map[string]bool {
 	c := make(chan mapValue)
 	results := make(map[string]bool)
 
-	for _, url := range urls {
+	for i := range urls {
 		go func() {
-			c <- mapValue{string: url, bool: wc(url)}
+			c <- mapValue{string: urls[i], bool: wc(urls[i])}
 		}()
 	}
 
